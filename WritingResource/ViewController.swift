@@ -26,13 +26,41 @@ let writingResources = [
     WritingResource(name: "Zotero", description: "Reference manager to collect, organize, cite, and share research sources", audience: "Professionals")
 ]
 
-class ViewController: UIViewController {
 
+
+
+
+
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
+    @IBOutlet weak var tableView: UITableView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        tableView.dataSource = self
+        tableView.delegate = self
     }
 
+    // How many rows in the table
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return writingResources.count
+    }
 
+    // How each cell should look
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Reuse a cell with identifier "cell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        // Get the WritingResource for this row
+        let resource = writingResources[indexPath.row]
+        
+        // Show the resource name in the cell
+        cell.textLabel?.text = resource.name
+        
+        return cell
+    }
+    
 }
 
