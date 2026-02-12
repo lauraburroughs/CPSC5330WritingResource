@@ -7,11 +7,7 @@
 
 import UIKit
 
-struct WritingResource {
-    var name: String
-    var description: String
-    var audience: String
-}
+
 
 let writingResources = [
     WritingResource(name: "Purdue OWL", description: "Comprehensive online writing lab covering grammar, citation styles, and research tips", audience: "Students"),
