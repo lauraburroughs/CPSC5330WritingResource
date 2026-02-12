@@ -28,9 +28,6 @@ let writingResources = [
 
 
 
-
-
-
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
@@ -61,6 +58,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         return cell
     }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedResource = writingResources[indexPath.row]
+        performSegue(withIdentifier: "showDetail", sender: selectedResource)
+    }
+
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetail",
+           let detailVC = segue.destination as? DetailViewController,
+           let resource = sender as? WritingResource {
+            detailVC.resource = resource
+        }
+    }
+
     
 }
 
