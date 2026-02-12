@@ -68,10 +68,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetail",
-           let detailVC = segue.destination as? DetailViewController,
-           let resource = sender as? WritingResource {
-            detailVC.resource = resource
+        if let detailVC = segue.destination as? DetailViewController,
+           let indexPath = tableView.indexPathForSelectedRow {
+            detailVC.resource = writingResources[indexPath.row]
         }
     }
 
